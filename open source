@@ -1,0 +1,158 @@
+Contribuir para projetos Open Source é uma ótima maneira de aprender, colaborar com outros desenvolvedores e ajudar a melhorar ferramentas e softwares que são usados globalmente. Aqui está um exemplo de como você pode estruturar um projeto no GitHub para ajudar novos desenvolvedores a entender como contribuir para projetos Open Source. Esse exemplo poderia se chamar "Guia de Contribuição Open Source".
+
+Estrutura do Projeto no GitHub:
+
+📁 Guia-Contribuicao-Open-Source
+├── 📁 .github
+│   ├── 📄 CONTRIBUTING.md
+│   ├── 📄 PULL_REQUEST_TEMPLATE.md
+│   ├── 📄 ISSUE_TEMPLATE.md
+├── 📄 README.md
+├── 📄 LICENSE
+├── 📄 CODE_OF_CONDUCT.md
+└── 📁 exemplos
+    ├── 📄 exemplo_pull_request.md
+    └── 📄 exemplo_issue.md
+
+Arquivos do Projeto
+
+1. README.md
+
+O arquivo principal que explica o propósito do repositório, orienta o usuário a como ele pode contribuir e informa sobre os primeiros passos para começar. Um exemplo de conteúdo:
+
+
+# Guia de Contribuição Open Source
+
+Este projeto tem como objetivo ensinar desenvolvedores iniciantes a contribuírem para projetos Open Source. Aqui você encontrará instruções passo a passo sobre como fazer pull requests, abrir issues e outras formas de contribuir.
+
+## Como contribuir
+
+- Confira a lista de issues e veja se algo te interessa.
+- Siga as instruções no arquivo `CONTRIBUTING.md`.
+- Crie uma issue se você encontrar um bug ou tiver uma ideia de melhoria.
+- Participe das discussões e ajude a revisar os pull requests de outros contribuidores.
+
+## Pré-requisitos
+
+- Tenha uma conta no [GitHub](https://github.com/).
+- Familiaridade básica com git.
+
+
+2. CONTRIBUTING.md
+
+Esse arquivo dá orientações detalhadas sobre como contribuir para o projeto. Ele pode incluir instruções sobre como clonar o repositório, criar uma branch e enviar um pull request. Exemplo:
+
+
+# Contribuindo
+
+Obrigado por considerar contribuir! Aqui estão as etapas para colaborar:
+
+1. Faça um fork do repositório.
+2. Crie uma nova branch (`git checkout -b minha-nova-branch`).
+3. Faça suas alterações.
+4. Envie um pull request com uma descrição clara das mudanças feitas.
+
+Antes de submeter o PR, certifique-se de que:
+- Todos os testes estão passando.
+- Sua contribuição segue o guia de estilo do projeto.
+
+
+3. PULL_REQUEST_TEMPLATE.md
+
+Um template de pull request ajuda a padronizar as submissões de código. Exemplo:
+
+
+## Descrição do PR
+
+- Descreva brevemente o que foi alterado ou adicionado.
+
+## Problema relacionado
+
+- Qual issue ou funcionalidade você está abordando? (adicione o número da issue).
+
+## Checklist
+
+- [ ] O código está devidamente formatado.
+- [ ] As alterações foram testadas.
+- [ ] A documentação foi atualizada, se necessário.
+
+
+4. ISSUE_TEMPLATE.md
+
+Um template para criação de issues que orienta o usuário a fornecer informações necessárias. Exemplo:
+
+
+## Descrição do problema
+
+- Qual comportamento você esperava?
+- Qual foi o comportamento observado?
+
+## Passos para reproduzir
+
+- Descreva os passos detalhados para reproduzir o problema.
+
+## Soluções sugeridas
+
+- Se tiver sugestões de como corrigir o problema, mencione aqui.
+
+
+5. LICENSE
+
+É importante incluir uma licença Open Source para garantir que os direitos de uso e distribuição estejam claros. A licença mais comum é a MIT License.
+
+
+MIT License
+
+Copyright (c) 2024 [Seu Nome]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files...
+
+
+6. CODE_OF_CONDUCT.md
+
+Um código de conduta ajuda a criar uma comunidade inclusiva e respeitosa. O conteúdo desse arquivo poderia ser baseado em um modelo padrão, como o Contributor Covenant.
+
+
+# Código de Conduta
+
+Todos os participantes do projeto são esperados a aderir ao seguinte código de conduta. O objetivo é garantir um ambiente acolhedor e inclusivo.
+
+
+7. exemplos/exemplo_pull_request.md e exemplo_issue.md
+
+Arquivos com exemplos práticos de como abrir uma issue ou fazer um pull request. Isso ajuda quem está começando.
+
+
+
+
+Instruções para Colaboradores
+
+Ao visitar o repositório, os novos colaboradores devem ser incentivados a:
+
+Ler o README.md e o CONTRIBUTING.md para entender como eles podem ajudar.
+
+Abrir issues e discutir melhorias no projeto.
+
+Revisar pull requests de outros colaboradores e fornecer feedback construtivo.
+
+Se comunicar de forma respeitosa, seguindo o CODE_OF_CONDUCT.md.
+
+
+
+
+---
+
+Exemplo de descrição do projeto no GitHub:
+
+# Guia de Contribuição Open Source
+
+Aprenda a contribuir para projetos Open Source com este guia prático. Siga as instruções para fazer pull requests, abrir issues e colaborar em projetos reais.
+
+👉 Comece agora: confira as [instruções de contribuição](CONTRIBUTING.md).
+
+⚡️ Primeiro projeto Open Source? Veja exemplos práticos em nossa pasta [exemplos](./exemplos).
+
+Licença: MIT
+
+Com esse projeto, você pode orientar desenvolvedores sobre boas práticas e facilitar suas primeiras contribuições em projetos Open Source.
+
