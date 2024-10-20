@@ -1,0 +1,159 @@
+Resumo: Automação de Pull Requests (PRs)
+
+A automação de Pull Requests (PRs) refere-se ao uso de ferramentas e scripts para simplificar, agilizar e padronizar o processo de criação, revisão e aprovação de PRs em projetos Open Source. Isso melhora a eficiência do desenvolvimento e garante que o código submetido siga as diretrizes e padrões do projeto.
+
+Benefícios da Automação de PRs
+
+1. Consistência: Garantir que cada PR seja revisado e validado da mesma forma, usando os mesmos critérios.
+
+
+2. Rapidez: Automatizar tarefas repetitivas, como checagem de estilo de código, testes de integração e validações de segurança.
+
+
+3. Facilidade de Revisão: Ferramentas automatizadas podem sinalizar problemas antes que o mantenedor humano precise revisar o código, economizando tempo.
+
+
+4. Menos Erros Manuais: Com validações automáticas, menos erros passam despercebidos, melhorando a qualidade geral do projeto.
+
+
+
+Componentes da Automação de PRs
+
+1. Validação Automática (CI/CD)
+
+CI/CD (Continuous Integration/Continuous Deployment): São pipelines que automatizam a validação de código quando um PR é aberto. Ferramentas como GitHub Actions, Travis CI, e CircleCI executam testes automatizados, verificam a qualidade do código e executam integrações contínuas.
+
+Exemplos:
+
+Executar testes de unidade automaticamente.
+
+Validar se o código segue padrões de formatação.
+
+Fazer build da aplicação para verificar se tudo está funcionando corretamente.
+
+
+
+
+
+2. Linting e Formatação
+
+Linters como ESLint, Prettier ou Flake8 são executados para garantir que o código segue os padrões de estilo e boas práticas. Isso é importante para manter a legibilidade e uniformidade no projeto.
+
+Automação pode adicionar um commit automático que corrige formatação, evitando discussões manuais sobre estilo.
+
+
+
+3. Verificação de Segurança
+
+Ferramentas de automação como Snyk ou Dependabot podem verificar automaticamente dependências vulneráveis ou problemas de segurança no código, oferecendo sugestões de correção.
+
+Isso reduz o risco de introdução de vulnerabilidades em PRs.
+
+
+
+4. Testes de Regressão e Integração
+
+Os testes de regressão garantem que novas mudanças não quebrem funcionalidades já existentes.
+
+Testes de integração verificam se o código novo funciona bem com o restante do sistema. Por exemplo, quando um PR é submetido, testes podem ser executados automaticamente para garantir que as mudanças não introduzam falhas.
+
+
+
+5. Revisão Automática de PRs
+
+Ferramentas como Reviewdog e CodeClimate podem ser configuradas para revisar automaticamente o código enviado em um PR e fornecer feedback sobre problemas de desempenho, duplicação de código, complexidade e outros pontos.
+
+Bots de revisão: Alguns projetos usam bots que deixam comentários automáticos em PRs para sugerir melhorias ou apontar inconsistências.
+
+
+
+6. Template de PR
+
+Utilizar templates de PR padroniza as submissões, garantindo que os contribuidores forneçam informações essenciais sobre suas alterações.
+
+Exemplo de um template:
+
+## Descrição do PR
+- Explique claramente o que foi alterado.
+
+## Checklist
+- [ ] Código foi testado.
+- [ ] Nenhuma dependência foi quebrada.
+
+
+
+
+7. Integração de Bots
+
+Bots podem realizar várias tarefas para automatizar o fluxo de trabalho de PRs:
+
+Mergers automáticos: Como o Mergify, que faz o merge de PRs automaticamente quando todas as verificações (testes, revisões) passam.
+
+Dependabot: Para criar automaticamente PRs de atualização de dependências.
+
+Welcome Bot: Saúda novos contribuidores e fornece links úteis ao criarem um PR.
+
+
+
+
+8. Notificações
+
+Integração com ferramentas de comunicação como Slack ou Discord pode enviar notificações quando um PR é aberto, aprovado ou quando falha em algum teste, facilitando a coordenação da equipe.
+
+
+
+
+Como Configurar a Automação de PRs com GitHub Actions (Exemplo Simples)
+
+1. Criar um Workflow no GitHub Actions
+
+No seu repositório, crie a pasta .github/workflows e adicione um arquivo YAML, por exemplo, ci.yml.
+
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v2
+
+    - name: Instalar dependências
+      run: npm install
+
+    - name: Rodar testes
+      run: npm test
+
+    - name: Verificar estilo de código
+      run: npm run lint
+
+Esse pipeline será executado automaticamente toda vez que um PR for aberto para a branch main, rodando testes e validando o estilo do código.
+
+2. Automatizar Verificação de Segurança com Snyk
+
+Adicionar uma etapa para verificação de segurança com Snyk em um PR:
+
+- name: Verificar vulnerabilidades
+  uses: snyk/actions/node@master
+  env:
+    SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+3. Adicionando Linting Automático
+
+Use ESLint para validar o código JavaScript:
+
+- name: Verificar formatação com ESLint
+  run: npm run lint
+
+Isso verificará se o código submetido segue o estilo correto antes que seja mesclado.
+
+Conclusão
+
+A automação dos PRs facilita a colaboração em projetos Open Source, melhorando a eficiência do processo de revisão, garantindo a qualidade do código e economizando tempo dos mantenedores e contribuidores. Ao integrar ferramentas de CI/CD, linters, verificações de segurança e bots, o fluxo de trabalho se torna mais robusto e padronizado, beneficiando toda a comunidade de desenvolvimento.
+
