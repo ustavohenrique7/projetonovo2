@@ -1,0 +1,158 @@
+Desenvolver uma contribuição para um projeto Open Source envolve várias etapas e práticas recomendadas. Abaixo estão os passos detalhados para criar uma contribuição eficiente, utilizando um exemplo hipotético de um projeto chamado "Guia-Contribuicao-Open-Source".
+
+1. Identificar onde contribuir
+
+Antes de começar, é importante identificar onde e como você pode contribuir para o projeto. Aqui estão algumas formas comuns:
+
+Correção de bugs: Corrigir problemas existentes no código.
+
+Documentação: Melhorar a documentação do projeto.
+
+Novas funcionalidades: Propor e implementar novos recursos.
+
+Testes: Escrever ou melhorar testes automatizados.
+
+
+Muitos projetos possuem uma lista de issues (problemas) no GitHub. Comece procurando por issues com tags como "good first issue" ou "help wanted", que são adequadas para iniciantes.
+
+2. Fazer o Fork do Repositório
+
+Antes de realizar qualquer alteração, você precisa fazer um fork (cópia) do repositório para sua conta. Isso permite que você faça mudanças no projeto sem afetar o repositório original.
+
+No GitHub, clique no botão Fork no canto superior direito do repositório.
+
+Isso criará uma cópia do repositório na sua conta.
+
+
+3. Clonar o Repositório Forkado
+
+Agora que você tem um fork do repositório, é hora de clonar o projeto para sua máquina local. No terminal, execute:
+
+git clone https://github.com/SEU-USUARIO/Guia-Contribuicao-Open-Source.git
+
+Substitua SEU-USUARIO pelo seu nome de usuário do GitHub.
+
+4. Criar uma Branch para suas Alterações
+
+Sempre crie uma nova branch para suas alterações, em vez de trabalhar na branch main (ou master). Isso mantém seu trabalho organizado e facilita o envio de mudanças separadas.
+
+cd Guia-Contribuicao-Open-Source
+git checkout -b minha-contribuicao
+
+5. Fazer as Alterações
+
+Agora você pode fazer as alterações que deseja. Dependendo da sua contribuição, isso pode significar:
+
+Correção de bugs: Corrija o código na pasta relevante.
+
+Documentação: Modifique arquivos como README.md ou CONTRIBUTING.md.
+
+Novos recursos: Implemente novas funcionalidades nos arquivos de código.
+
+
+Exemplo de alteração para melhorar a documentação no README.md:
+
+## Novos Contribuintes
+
+Bem-vindos novos contribuidores! Se você deseja aprender a contribuir para projetos Open Source, siga este guia passo a passo.
+
+6. Testar Suas Alterações
+
+Se você modificou o código ou implementou uma nova funcionalidade, é essencial testar suas mudanças localmente para garantir que tudo funcione como esperado.
+
+Testes automáticos: Se o projeto tem testes, rode os testes automatizados com um comando como:
+
+
+npm test
+
+ou
+
+python -m unittest discover
+
+Testes manuais: Verifique se suas alterações funcionam conforme o esperado manualmente.
+
+
+7. Fazer o Commit das Alterações
+
+Depois de testar suas alterações e garantir que estão corretas, é hora de fazer um commit. Certifique-se de que sua mensagem de commit seja clara e descritiva.
+
+git add .
+git commit -m "Corrigir bug na função X" # ou "Melhorar documentação"
+
+8. Enviar as Alterações para o GitHub
+
+Envie suas alterações para o repositório forkado no GitHub com o comando:
+
+git push origin minha-contribuicao
+
+9. Criar um Pull Request (PR)
+
+Agora que suas alterações estão no GitHub, o próximo passo é criar um Pull Request (PR) para que os mantenedores do projeto possam revisar suas mudanças.
+
+Vá até o repositório original no GitHub.
+
+Você verá um botão de "Compare & pull request". Clique nele.
+
+No título e na descrição do PR, explique claramente o que você fez e por que isso é útil.
+
+
+Exemplo de título de PR: "Corrigir erro de validação no formulário de cadastro"
+
+Exemplo de descrição de PR:
+
+Este PR corrige o bug #42 que causava falha na validação do formulário de cadastro quando o campo de email estava vazio. Adicionei uma verificação extra para garantir que campos obrigatórios sejam validados corretamente.
+
+Alterações:
+- Corrigi a função de validação de formulário no arquivo `form.js`.
+- Adicionei testes para cobrir o caso de erro.
+
+Resolves #42.
+
+10. Revisão e Feedback
+
+Após a criação do Pull Request, os mantenedores do projeto podem revisar suas mudanças. Eles podem fazer perguntas, sugerir melhorias ou pedir para você ajustar algo antes de aceitar o PR.
+
+Seja paciente: Os mantenedores podem estar ocupados, então pode levar algum tempo para que revisem seu PR.
+
+Responda ao feedback: Se você receber comentários pedindo mudanças, faça os ajustes necessários e atualize seu PR.
+
+
+11. Contribuição Aceita
+
+Uma vez que o Pull Request for revisado e aprovado, ele será mesclado (merge) no projeto principal, e você terá oficialmente contribuído para o projeto Open Source!
+
+Exemplo de Contribuição
+
+Aqui está um exemplo de como uma contribuição simples pode ser desenvolvida no contexto do projeto "Guia-Contribuicao-Open-Source":
+
+Objetivo: Melhorar a documentação
+
+1. Fork o repositório.
+
+
+2. Criar uma branch melhorar-documentacao.
+
+
+3. Editar o arquivo README.md para adicionar uma seção "Novos Contribuintes".
+
+
+4. Testar que as alterações na documentação são claras e seguem o guia de estilo do projeto.
+
+
+5. Fazer o commit: git commit -m "Adicionar seção de Novos Contribuintes ao README".
+
+
+6. Enviar para o GitHub: git push origin melhorar-documentacao.
+
+
+7. Abrir um Pull Request explicando a melhoria na documentação.
+
+
+8. Responder ao feedback dos mantenedores (se houver).
+
+
+
+Parabéns, você contribuiu para um projeto Open Source!
+
+Se precisar de mais detalhes ou quiser simular um caso mais específico, podemos elaborar juntos!
+
