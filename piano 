@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano Simples</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Piano Simples</h1>
+    <div class="piano">
+        <div class="key white" data-note="C"></div>
+        <div class="key black" data-note="C#"></div>
+        <div class="key white" data-note="D"></div>
+        <div class="key black" data-note="D#"></div>
+        <div class="key white" data-note="E"></div>
+        <div class="key white" data-note="F"></div>
+        <div class="key black" data-note="F#"></div>
+        <div class="key white" data-note="G"></div>
+        <div class="key black" data-note="G#"></div>
+        <div class="key white" data-note="A"></div>
+        <div class="key black" data-note="A#"></div>
+        <div class="key white" data-note="B"></div>
+    </div>
+    <script>
+  // Sons das notas (substitua os links com caminhos de arquivos de som das notas)
+const noteSounds = {
+    "C": new Audio("sounds/C.mp3"),
+    "C#": new Audio("sounds/Csharp.mp3"),
+    "D": new Audio("sounds/D.mp3"),
+    "D#": new Audio("sounds/Dsharp.mp3"),
+    "E": new Audio("sounds/E.mp3"),
+    "F": new Audio("sounds/F.mp3"),
+    "F#": new Audio("sounds/Fsharp.mp3"),
+    "G": new Audio("sounds/G.mp3"),
+    "G#": new Audio("sounds/Gsharp.mp3"),
+    "A": new Audio("sounds/A.mp3"),
+    "A#": new Audio("sounds/Asharp.mp3"),
+    "B": new Audio("sounds/B.mp3"),
+};
+
+// Seleciona todas as teclas
+const keys = document.querySelectorAll('.key');
+
+// Adiciona evento de clique para tocar a nota
+keys.forEach(key => {
+    key.addEventListener('click', () => {
+        const note = key.getAttribute('data-note');
+        playNote(note);
+    });
+});
+
+// Função para tocar a nota
+function playNote(note) {
+    const audio = noteSounds[note];
+    if (audio) {
+        audio.currentTime = 0; // Reinicia o áudio se já estiver tocando
+        audio.play();
+    }
+}
+  </script>
+</body>
+</html>
+
+ESSE É O HTML É O JAVASCRIPT 
+
+AGORA O CSS 
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #333;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+h1 {
+    position: absolute;
+    top: 20px;
+}
+.piano {
+    display: flex;
+    position: relative;
+}
+.key {
+    width: 60px;
+    height: 200px;
+    margin: 2px;
+    border: 1px solid #333;
+    cursor: pointer;
+    display: inline-block;
+}
+.key.white {
+    background-color: #fff;
+}
+.key.black {
+    background-color: #000;
+    height: 120px;
+    width: 40px;
+    position: absolute;
+    margin-left: -20px;
+    z-index: 1;
+}
+.key.black:nth-of-type(2),
+.key.black:nth-of-type(4),
+.key.black:nth-of-type(6),
+.key.black:nth-of-type(8),
+.key.black:nth-of-type(10) {
+    margin-left: 20px;
+}
