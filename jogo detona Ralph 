@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo do Detona Ralph</title>
+    <link rel="stylesheet" href="projeto 1.css">
+</head>
+<body>
+  <hr>
+  <h1>Jogo do Detona Ralph</h1>
+  <hr>
+    <p>Pontos: <span id="score">0</span></p>
+    <div class="game-area">
+        <div class="window" id="window1"></div>
+        <div class="window" id="window2"></div>
+        <div class="window" id="window3"></div>
+        <div class="window" id="window4"></div>
+    </div>
+    <audio id="hit-sound" src="hit.mp3"></audio>
+    <audio id="miss-sound" src="miss.mp3"></audio>
+
+
+    
+  <script>
+  let score = 0;
+let currentWindow = null;
+const scoreDisplay = document.getElementById('score');
+const windows = document.querySelectorAll('.window');
+const hitSound = document.getElementById('hit-sound');
+const missSound = document.getElementById('miss-sound');
+
+// Função para escolher uma janela aleatória
+function getRandomWindow() {
+    const index = Math.floor(Math.random() * windows.length);
+    return windows[index];
+}
+
+// Função para aparecer o Ralph em uma janela
+function showRalph() {
+    if (currentWindow) {
+        currentWindow.classList.remove('active');
+    }
+    currentWindow = getRandomWindow();
+    currentWindow.classList.add('active');
+}
+
+// Evento de clique nas janelas
+windows.forEach(window => {
+    window.addEventListener('click', () => {
+        if (window === currentWindow) {
+            score++;
+            scoreDisplay.textContent = score;
+            hitSound.play();
+            showRalph();
+        } else {
+            missSound.play();
+        }
+    });
+});
+
+// Mudar de janela a cada segundo
+setInterval(showRalph, 1000);
+  </script>
+  
+</body>
+</html>
+
+ESSE É O HTML É JAVASCRIPT 
+
+AGORA O CSS
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: blue;
+    color: #fff;
+}
+.game-area {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 300px;
+    margin: 20px auto;
+}
+.window {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    background-color: black;
+    position: relative;
+    cursor: pointer;
+}
+.window.active {
+    background-image: url('ralph.png');
+    background-size: cover;
+}
