@@ -1,0 +1,229 @@
+Apresentação do Desafio
+
+Neste desafio, mergulharemos no multiverso do Spider-Man, criando um layout rico e dinâmico, com transições, efeitos CSS avançados e um carrossel 3D. Além disso, abordaremos conceitos fundamentais como o padrão BEM CSS, posicionamento de elementos, sobreposição de blocos e a arte de composição de itens na tela.
+
+O objetivo final é criar uma homepage com um carrossel 3D para destacar as variações do Homem-Aranha no multiverso, e uma página interna rica em detalhes, incluindo vídeos, links e uma galeria. Aprenderemos sobre responsividade, reaproveitamento de código e integração com bibliotecas externas.
+
+
+---
+
+1. Iniciando a Estrutura da Homepage
+
+Explicando o Padrão BEM CSS (Block Element Modifier)
+
+BEM é uma metodologia que facilita a manutenção e organização do CSS.
+
+Estrutura básica:
+
+Block: Representa um componente independente.
+
+Element: Parte do componente (ligado ao Block).
+
+Modifier: Variação do componente ou elemento.
+
+
+
+Exemplo:
+
+<div class="hero">
+    <div class="hero__image hero__image--spiderman"></div>
+    <h1 class="hero__title">Spider-Man: Multiverso</h1>
+</div>
+
+No exemplo acima:
+
+hero é o Block.
+
+hero__image e hero__title são Elements.
+
+hero__image--spiderman é um Modifier.
+
+
+Estrutura HTML Inicial:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spider-Man Multiverse</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header__logo">Spider-Verse</div>
+        <nav class="header__nav">
+            <ul class="header__menu">
+                <li class="header__menu-item"><a href="#">Home</a></li>
+                <li class="header__menu-item"><a href="#">Filmes</a></li>
+                <li class="header__menu-item"><a href="#">Galeria</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="homepage">
+        <section class="hero">
+            <div class="hero__image hero__image--spiderman"></div>
+            <h1 class="hero__title">Bem-vindo ao Multiverso do Spider-Man</h1>
+        </section>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>
+
+
+---
+
+2. Criando Arquivo de Estilização da Homepage
+
+Estrutura do CSS:
+
+1. Global Styles: Configurações gerais (reset, fontes, etc.).
+
+
+2. Component Styles: Estilo para blocos específicos, seguindo o padrão BEM.
+
+
+3. Modifiers: Estilos de variações dos componentes.
+
+
+
+Importando no HTML:
+
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #ff0000;
+    --secondary-color: #000;
+    --bg-color: #f5f5f5;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--secondary-color);
+}
+
+
+---
+
+3. Estilizando o Background da Página com Pseudo-Elementos CSS
+
+Pseudo-elementos como ::before e ::after ajudam na criação de efeitos visuais.
+
+Exemplo:
+
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 4rem 0;
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.hero__image {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background: url('spiderman.png') no-repeat center / contain;
+    margin: 0 auto;
+}
+
+.hero__image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+
+---
+
+4. Iniciando a Estrutura do Carrossel
+
+Um carrossel exibe elementos como cards em rotação contínua.
+
+HTML:
+
+<section class="carousel">
+    <div class="carousel__wrapper">
+        <div class="carousel__card">Spider-Man 2099</div>
+        <div class="carousel__card">Spider-Gwen</div>
+        <div class="carousel__card">Miles Morales</div>
+        <!-- Outros cards -->
+    </div>
+</section>
+
+CSS Básico:
+
+.carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    height: 300px;
+}
+
+.carousel__wrapper {
+    display: flex;
+    transform-style: preserve-3d;
+    animation: rotate 10s infinite linear;
+}
+
+.carousel__card {
+    width: 200px;
+    height: 300px;
+    background-color: var(--primary-color);
+    color: #fff;
+    margin: 0 1rem;
+    transform-origin: center;
+    text-align: center;
+    line-height: 300px;
+    border-radius: 10px;
+}
+
+Animação 3D:
+
+@keyframes rotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+
+---
+
+5. Finalizando o Projeto
+
+Responsividade: Usar media queries para adaptar a página para dispositivos móveis.
+
+Bibliotecas: Integrar animações com GSAP ou Anime.js para efeitos mais complexos.
+
+Página Interna: Criar galerias, adicionar vídeos e links com componentes reutilizáveis.
+
+
+Exemplo de Responsividade:
+
+@media (max-width: 768px) {
+    .carousel__card {
+        width: 150px;
+        height: 200px;
+        line-height: 200px;
+    }
+}
+
+
+---
+
+Agora sua página temática sobre o multiverso Spider-Man está pronta para impressionar com efeitos visuais avançados e interatividade incrível! Explore e personalize ainda mais!
+
