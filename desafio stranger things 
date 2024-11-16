@@ -1,0 +1,440 @@
+Apresentação do Laboratório
+
+Neste laboratório, vamos mergulhar no universo do Front-end criando uma landing page temática de Stranger Things. Exploraremos conceitos fundamentais de HTML e CSS e implementaremos um theme switcher (light e dark) para alternar entre o mundo real e o mundo invertido. Vamos aprender a estruturar uma página, estilizar elementos de forma profissional e torná-la dinâmica.
+
+
+---
+
+1. Iniciando a Estrutura do HTML
+
+Começaremos criando um arquivo index.html.
+
+Estruturaremos o básico com as tags padrão: <!DOCTYPE html>, <html>, <head>, e <body>.
+
+Definiremos o título da página: "Stranger Things - Mundo Invertido".
+
+
+Exemplo básico:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stranger Things - Mundo Invertido</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Stranger Things</h1>
+        <button id="theme-switcher">Alternar Tema</button>
+    </header>
+</body>
+</html>
+
+
+---
+
+2. Definindo as Sessões HTML da Página
+
+Header: Inclui o título e o botão de alternar temas.
+
+Seção de Personagens: Apresentação de personagens principais com imagens e descrições.
+
+Seção de Enredo: Um resumo breve da série.
+
+Formulário de Contato: Para os fãs enviarem mensagens.
+
+
+Estrutura inicial:
+
+<body>
+    <header>
+        <h1>Stranger Things</h1>
+        <button id="theme-switcher">Alternar Tema</button>
+    </header>
+    <main>
+        <section id="characters">
+            <h2>Personagens</h2>
+            <div class="character">
+                <img src="eleven.jpg" alt="Eleven">
+                <h3>Eleven</h3>
+                <p>Psíquica poderosa e peça-chave na luta contra o mundo invertido.</p>
+            </div>
+            <!-- Outros personagens -->
+        </section>
+        <section id="story">
+            <h2>O Enredo</h2>
+            <p>Descubra os mistérios de Hawkins e o portal para o Mundo Invertido.</p>
+        </section>
+        <section id="contact">
+            <h2>Entre em Contato</h2>
+            <form>
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="message">Mensagem:</label>
+                <textarea id="message" name="message" required></textarea>
+                
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+</body>
+
+
+---
+
+3. Entendendo o Atributo role no HTML
+
+O que é?: O atributo role é usado para melhorar a acessibilidade, descrevendo a funcionalidade de um elemento para tecnologias assistivas.
+
+Exemplo no nosso projeto:
+
+O botão de alternar temas terá role="switch".
+
+As seções terão role="region".
+
+
+
+
+---
+
+4. Vinculando o Arquivo HTML com o CSS
+
+Criar um arquivo styles.css.
+
+Importar no <head> com:
+
+
+<link rel="stylesheet" href="styles.css">
+
+
+---
+
+5. Importando Fontes e Definindo Variáveis CSS
+
+Fontes: Usaremos o Google Fonts (Ex.: "Press Start 2P").
+
+Variáveis:
+
+Cores principais (ex.: vermelho e preto para o tema dark).
+
+Variáveis para temas light e dark.
+
+
+
+Exemplo no styles.css:
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+    --primary-color: #e50914;
+    --secondary-color: #000;
+    --light-bg: #fff;
+    --dark-bg: #000;
+    --light-text: #000;
+    --dark-text: #fff;
+}
+
+
+---
+
+6. Definindo os Temas Dark e Light
+
+Usaremos classes para alternar temas: .light-theme e .dark-theme.
+
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.light-theme {
+    background-color: var(--light-bg);
+    color: var(--light-text);
+}
+
+.dark-theme {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+
+---
+
+7. Aplicando Estilos Genéricos
+
+Estilo para header, section, e botões.
+
+Exemplo:
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: var(--dark-text);
+}
+button {
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+
+---
+
+8. Tornando o Botão de Alternar Temas Dinâmico
+
+Adicionar um script para alternar a classe do body.
+
+
+<script>
+    const themeSwitcher = document.getElementById('theme-switcher');
+    themeSwitcher.addEventListener('click', () => {
+        document.body.classList.toggle('dark-theme');
+        document.body.classList.toggle('light-theme');
+    });
+</script>
+
+
+---
+
+9. Desafio Final
+
+Personalize o projeto, adicionando mais detalhes visuais e interatividade.
+
+Experimente usar transições, animações CSS e pseudo-elementos para deixar a página mais imersiva!
+
+
+10. Estilizando o Header
+
+O header será o destaque inicial da página, com o título da série e o botão de alternar temas.
+
+Exemplo de Estilo no styles.css:
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: var(--dark-text);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+header button {
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+header button:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-bg);
+}
+
+
+---
+
+11. Estilizando a Seção dos Personagens
+
+Os personagens serão exibidos em cards organizados em uma grade.
+
+HTML da Seção:
+
+<section id="characters">
+    <h2>Personagens</h2>
+    <div class="characters-container">
+        <div class="character">
+            <img src="eleven.jpg" alt="Eleven">
+            <h3>Eleven</h3>
+            <p>Psíquica poderosa e peça-chave na luta contra o mundo invertido.</p>
+        </div>
+        <div class="character">
+            <img src="hopper.jpg" alt="Jim Hopper">
+            <h3>Jim Hopper</h3>
+            <p>O chefe de polícia de Hawkins, sempre pronto para enfrentar o perigo.</p>
+        </div>
+        <!-- Adicione mais cards de personagens -->
+    </div>
+</section>
+
+Estilo no CSS:
+
+#characters {
+    padding: 2rem;
+    text-align: center;
+}
+
+#characters h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.characters-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.character {
+    background-color: var(--light-bg);
+    color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.character img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.character:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+---
+
+12. Estilizando o Formulário
+
+A seção de contato terá um design moderno e alinhado ao tema.
+
+HTML da Seção de Contato:
+
+<section id="contact">
+    <h2>Entre em Contato</h2>
+    <form>
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="message">Mensagem:</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit">Enviar</button>
+    </form>
+</section>
+
+Estilo no CSS:
+
+#contact {
+    padding: 2rem;
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+}
+
+#contact h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+#contact form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#contact label {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#contact input, #contact textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--light-text);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#contact button {
+    background-color: var(--primary-color);
+    color: var(--dark-text);
+    border: none;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#contact button:hover {
+    background-color: var(--light-bg);
+    color: var(--primary-color);
+}
+
+
+---
+
+13. Adicionando Animações para a Experiência Imersiva
+
+Podemos usar animações para transições de tema e efeitos nos elementos.
+
+Adicionando Animação ao Alternar Tema:
+
+body {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.character img {
+    transition: transform 0.3s ease;
+}
+
+.character:hover img {
+    transform: scale(1.1);
+}
+
+
+---
+
+14. Finalizando a Landing Page
+
+Teste a responsividade utilizando o recurso @media.
+
+Verifique a funcionalidade do botão de alternar tema.
+
+Adicione detalhes finais, como um footer com créditos e links relacionados à série.
+
+
+Exemplo de Footer:
+
+<footer>
+    <p>© 2024 Stranger Things Fan Page. Todos os direitos reservados.</p>
+</footer>
+
+CSS para o Footer:
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+    font-size: 0.9rem;
+}
+
+
+---
+
+Agora sua página está pronta para explorar os mistérios do Mundo Invertido! Desafie-se a personalizá-la ainda mais com interações como modal pop-ups, efeitos de hover mais elaborados, ou até mesmo integrações com APIs externas.
+
