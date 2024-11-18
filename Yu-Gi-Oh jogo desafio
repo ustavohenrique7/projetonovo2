@@ -1,0 +1,184 @@
+Criando um Jogo de Yu-Gi-Oh com Mecânicas de Jo-Ken-Po: Organizando o Código e Estruturando o Projeto
+Neste artigo, vamos criar uma versão simples do famoso jogo de Yu-Gi-Oh utilizando as mecânicas do Jo-Ken-Po (Pedra, Papel e Tesoura). A ideia é explorar como organizar e estruturar o código de forma eficiente com JavaScript puro, utilizando conceitos avançados de organização de estados, estruturas de arquivos e criação de funções reaproveitáveis.
+
+A versão do jogo será uma simulação de batalha entre monstros, onde as cartas (ou monstros) terão as três possíveis "habilidades" do Jo-Ken-Po: Pedra, Papel e Tesoura. Vamos implementar uma simples interação entre dois jogadores, onde cada um escolhe uma carta e o vencedor é determinado pelas regras do Jo-Ken-Po.
+
+Estrutura do Projeto
+Antes de começarmos a codificar, vamos planejar a estrutura do nosso projeto. Uma boa organização de arquivos facilita a manutenção e escalabilidade do código.
+
+Estrutura de Arquivos:
+bash
+Copiar código
+yu-gi-oh-jokenpo/
+│
+├── index.html             # HTML para interface
+├── style.css              # Estilos básicos
+├── js/
+│   ├── game.js            # Lógica principal do jogo
+│   ├── player.js          # Classe para o jogador
+│   ├── card.js            # Classe para a carta
+│   └── utils.js           # Funções auxiliares
+└── assets/
+    └── cards/             # Imagens das cartas, se necessário
+Explicando os Arquivos
+index.html: O arquivo HTML contém a estrutura da página e os elementos de interação (botões, área de exibição dos resultados, etc.).
+style.css: O arquivo CSS aplica os estilos básicos à interface do jogo.
+js/game.js: Contém a lógica principal do jogo, onde a interação entre os jogadores e as cartas ocorre.
+js/player.js: Define a classe Player, representando os jogadores.
+js/card.js: Define a classe Card, representando as cartas que os jogadores irão escolher.
+js/utils.js: Contém funções auxiliares, como a verificação do vencedor e outras operações reutilizáveis.
+Começando com o Código
+1. Definindo as Cartas (card.js)
+Vamos começar criando uma classe Card que representa uma carta no jogo. Cada carta terá uma "habilidade" (Pedra, Papel ou Tesoura) e um nome.
+
+javascript
+Copiar código
+// js/card.js
+class Card {
+    constructor(name, type) {
+        this.name = name;
+        this.type = type;  // 'pedra', 'papel' ou 'tesoura'
+    }
+}
+
+const cardOptions = [
+    new Card('Pedra', 'pedra'),
+    new Card('Papel', 'papel'),
+    new Card('Tesoura', 'tesoura')
+];
+
+export { Card, cardOptions };
+Aqui, estamos criando uma classe Card e três instâncias dela: Pedra, Papel e Tesoura.
+
+2. Criando o Jogador (player.js)
+Agora, vamos criar a classe Player para representar os jogadores. Cada jogador escolherá uma carta e o jogo determinará o vencedor com base nas escolhas dos jogadores.
+
+javascript
+Copiar código
+// js/player.js
+class Player {
+    constructor(name) {
+        this.name = name;
+        this.selectedCard = null;  // Carta escolhida pelo jogador
+    }
+
+    // Função para o jogador escolher uma carta aleatória
+    chooseCard(cards) {
+        const randomIndex = Math.floor(Math.random() * cards.length);
+        this.selectedCard = cards[randomIndex];
+    }
+}
+
+export { Player };
+A classe Player tem um nome e uma carta selecionada. A função chooseCard permite ao jogador escolher uma carta aleatoriamente das opções disponíveis.
+
+3. Lógica Principal do Jogo (game.js)
+Agora, vamos juntar tudo isso e implementar a lógica do jogo, onde dois jogadores irão se enfrentar, escolher uma carta e o vencedor será determinado com base nas regras de Jo-Ken-Po.
+
+javascript
+Copiar código
+// js/game.js
+import { Player } from './player.js';
+import { cardOptions } from './card.js';
+import { determineWinner } from './utils.js';
+
+// Função para iniciar o jogo
+function startGame() {
+    const player1 = new Player('Jogador 1');
+    const player2 = new Player('Jogador 2');
+
+    // Jogadores escolhem suas cartas
+    player1.chooseCard(cardOptions);
+    player2.chooseCard(cardOptions);
+
+    console.log(`${player1.name} escolheu: ${player1.selectedCard.name}`);
+    console.log(`${player2.name} escolheu: ${player2.selectedCard.name}`);
+
+    // Determina o vencedor
+    const winner = determineWinner(player1, player2);
+    console.log(winner);
+}
+
+startGame();
+A função startGame cria dois jogadores, faz com que eles escolham suas cartas e, em seguida, chama a função determineWinner (que vamos criar no próximo passo) para determinar o vencedor.
+
+4. Função para Determinar o Vencedor (utils.js)
+Agora, vamos criar a função determineWinner, que recebe dois jogadores e compara suas cartas para determinar quem venceu, de acordo com as regras do Jo-Ken-Po:
+
+javascript
+Copiar código
+// js/utils.js
+function determineWinner(player1, player2) {
+    const card1 = player1.selectedCard.type;
+    const card2 = player2.selectedCard.type;
+
+    if (card1 === card2) {
+        return 'Empate!';
+    }
+
+    if (
+        (card1 === 'pedra' && card2 === 'tesoura') ||
+        (card1 === 'papel' && card2 === 'pedra') ||
+        (card1 === 'tesoura' && card2 === 'papel')
+    ) {
+        return `${player1.name} venceu!`;
+    }
+
+    return `${player2.name} venceu!`;
+}
+
+export { determineWinner };
+As regras do Jo-Ken-Po são simples: Pedra vence Tesoura, Tesoura vence Papel e Papel vence Pedra. Se ambos escolherem a mesma carta, o resultado é um empate.
+
+5. Interface do Usuário (index.html & style.css)
+Agora, vamos adicionar uma interface básica onde os jogadores podem clicar em botões para escolher suas cartas e ver o resultado.
+
+index.html:
+
+html
+Copiar código
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yu-Gi-Oh Jo-Ken-Po</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Yu-Gi-Oh Jo-Ken-Po</h1>
+    <div>
+        <button id="start-btn">Iniciar Jogo</button>
+    </div>
+    <div id="result"></div>
+
+    <script type="module" src="js/game.js"></script>
+</body>
+</html>
+style.css:
+
+css
+Copiar código
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+Quando o botão "Iniciar Jogo" for pressionado, o jogo começará e o resultado será mostrado.
+
+Conclusão
+Neste tutorial, aprendemos como criar um jogo simples inspirado no Yu-Gi-Oh com as mecânicas do Jo-Ken-Po utilizando JavaScript puro. Organizar o código em diferentes arquivos e módulos não só ajuda a manter o código mais limpo e reutilizável, mas também prepara o projeto para uma possível expansão, como adicionar mais jogadores, cartas especiais e até uma interface gráfica mais elaborada.
+
+Com esse projeto, você pode praticar conceitos importantes de estruturação de código e organização de estados em JavaScript, além de aprender a trabalhar com módulos e funções reutilizáveis. Esse tipo de abordagem pode ser usado em projetos mais complexos à medida que você ganha experiência
