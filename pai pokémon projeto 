@@ -1,0 +1,262 @@
+O uso do Git/GitHub nos Desafios de Projeto da DIO é essencial para consolidar habilidades práticas e demonstrar a evolução do aprendizado. Abaixo, exploro a importância dessas ferramentas e como elas se integram ao projeto de criar uma Pokédex usando uma API REST.
+
+Importância do Git/GitHub nos Desafios de Projeto
+
+1. Controle de Versão
+O Git permite que você acompanhe o histórico de mudanças no código, possibilitando reverter para versões anteriores, se necessário. Isso é crucial durante o desenvolvimento de projetos.
+
+
+2. Colaboração
+GitHub é uma plataforma que facilita o trabalho em equipe. Você pode criar branches para trabalhar em diferentes funcionalidades e, posteriormente, unir tudo com pull requests.
+
+
+3. Portfólio Profissional
+Manter os desafios no GitHub cria um portfólio que demonstra suas habilidades para recrutadores ou potenciais empregadores.
+
+
+4. Aprendizado Prático
+O uso prático de comandos Git (como commit, push, pull, merge) solidifica o aprendizado teórico.
+
+
+
+
+---
+
+Criando uma Pokédex com API REST
+
+O projeto da Pokédex é um exemplo ideal para aplicar os fundamentos de JavaScript e Desenvolvimento Web. Aqui estão os passos principais:
+
+1. Configurando o Ambiente
+
+Instale um editor de código (como o VS Code).
+
+Configure o Git para versionar o projeto.
+
+
+2. Consumindo a API REST
+
+Use a API PokéAPI (https://pokeapi.co) para buscar dados sobre os Pokémon.
+
+Faça requisições HTTP com fetch no JavaScript para acessar os endpoints da API.
+
+
+3. Criando a Interface Web
+
+HTML: Estruture a página com elementos como input (para busca de Pokémon) e cards para exibir informações.
+
+CSS: Estilize os elementos para criar uma experiência visual agradável.
+
+JavaScript: Dinamize a interface, como exibir dados do Pokémon ao buscar pelo nome ou ID.
+
+
+4. Gerenciando o Código no Git/GitHub
+
+Inicie um repositório com git init.
+
+Faça commits regulares: git add ., git commit -m "mensagem".
+
+Suba o projeto para o GitHub: git push origin main.
+
+
+5. Funcionalidades Extras
+
+Adicione uma barra de navegação para acessar diferentes tipos de Pokémon.
+
+Inclua um sistema de paginação para listar vários Pokémon.
+
+Faça deploy do projeto no GitHub Pages para compartilhar com a comunidade.
+
+
+
+---
+
+Benefícios do Projeto
+
+Aprendizado Integrado: Une conceitos de front-end, APIs e versionamento.
+
+Portfólio Valorizado: Demonstra habilidades práticas.
+
+Divulgação: Projetos como esse podem atrair colaboradores e oportunidades.
+
+
+Se precisar de mais detalhes sobre qualquer etapa, posso ajudar!
+
+.
+
+
+---
+
+Estrutura do Projeto
+
+1. index.html – Estrutura da página.
+
+
+2. style.css – Estilização.
+
+
+3. script.js – Lógica com JavaScript para consumir a API.
+
+
+
+
+---
+
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokédex</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Pokédex</h1>
+    <div class="search-box">
+      <input type="text" id="pokemonInput" placeholder="Digite o nome ou ID do Pokémon">
+      <button id="searchBtn">Buscar</button>
+    </div>
+    <div id="pokemonCard" class="card hidden">
+      <h2 id="pokemonName"></h2>
+      <img id="pokemonImage" src="" alt="Imagem do Pokémon">
+      <p><strong>Tipo:</strong> <span id="pokemonType"></span></p>
+      <p><strong>Altura:</strong> <span id="pokemonHeight"></span></p>
+      <p><strong>Peso:</strong> <span id="pokemonWeight"></span></p>
+    </div>
+    <p id="errorMessage" class="error hidden">Pokémon não encontrado! Tente novamente.</p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+---
+
+style.css
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+  max-width: 400px;
+}
+
+h1 {
+  color: #ff0000;
+}
+
+.search-box {
+  margin: 20px 0;
+}
+
+input {
+  padding: 10px;
+  width: 70%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #cc0000;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+.error {
+  color: red;
+}
+
+
+---
+
+script.js
+
+const searchBtn = document.getElementById('searchBtn');
+const pokemonInput = document.getElementById('pokemonInput');
+const pokemonCard = document.getElementById('pokemonCard');
+const pokemonName = document.getElementById('pokemonName');
+const pokemonImage = document.getElementById('pokemonImage');
+const pokemonType = document.getElementById('pokemonType');
+const pokemonHeight = document.getElementById('pokemonHeight');
+const pokemonWeight = document.getElementById('pokemonWeight');
+const errorMessage = document.getElementById('errorMessage');
+
+searchBtn.addEventListener('click', () => {
+  const pokemon = pokemonInput.value.toLowerCase().trim();
+  if (pokemon) {
+    fetchPokemon(pokemon);
+  }
+});
+
+async function fetchPokemon(pokemon) {
+  try {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+    if (!response.ok) throw new Error('Pokémon não encontrado');
+    const data = await response.json();
+
+    // Atualiza o card com as informações do Pokémon
+    pokemonName.textContent = capitalizeFirstLetter(data.name);
+    pokemonImage.src = data.sprites.front_default;
+    pokemonType.textContent = data.types.map(type => capitalizeFirstLetter(type.type.name)).join(', ');
+    pokemonHeight.textContent = `${data.height / 10} m`;
+    pokemonWeight.textContent = `${data.weight / 10} kg`;
+
+    // Mostra o card e esconde a mensagem de erro
+    pokemonCard.classList.remove('hidden');
+    errorMessage.classList.add('hidden');
+  } catch (error) {
+    // Mostra mensagem de erro e esconde o card
+    errorMessage.classList.remove('hidden');
+    pokemonCard.classList.add('hidden');
+  }
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+
+---
+
+Como Rodar o Projeto
+
+1. Crie os arquivos index.html, style.css e script.js no mesmo diretório.
+
+
+2. Abra o arquivo index.html no navegador.
+
+
+3. Digite o nome ou ID de um Pokémon (exemplo: pikachu ou 25) e clique em Buscar.
+
+
+
+esse foi o projeto.
