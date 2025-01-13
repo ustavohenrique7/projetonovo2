@@ -1,0 +1,50 @@
+Este laboratório é uma excelente oportunidade para explorar dois serviços poderosos da Microsoft Azure: o Azure Speech Studio e o Language Studio, ambos voltados para soluções avançadas em Inteligência Artificial (IA).
+
+Resumo do Laboratório:
+
+1. Azure Speech Studio:
+
+Focado em análise e processamento de fala.
+
+Recursos principais:
+
+Conversão de fala para texto (Speech-to-Text).
+
+Conversão de texto para fala (Text-to-Speech).
+
+Tradução de fala em tempo real.
+
+Reconhecimento de palavras-chave e detecção de intenção.
+
+
+
+
+2. Language Studio:
+
+Focado em análise de linguagem natural (NLP).
+
+Recursos principais:
+
+Extração de frases-chave.
+
+Análise de sentimentos.
+
+Reconhecimento de entidades nomeadas (NER).
+
+Classificação de texto.
+
+
+
+
+
+Objetivos do Lab:
+
+Explorar e configurar os serviços no Azure Portal.
+
+Praticar a criação de soluções que integram reconhecimento de fala e processamento de linguagem.
+
+Desenvolver habilidades práticas para implementar esses serviços em aplicações reais, como chatbots, assistentes virtuais e sistemas de análise de dados textuais.
+
+
+Essa experiência permitirá que você compreenda como a IA no Azure pode ser usada para solucionar desafios complexos em negócios e tecnologia.
+
